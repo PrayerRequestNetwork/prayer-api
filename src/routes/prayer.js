@@ -25,6 +25,20 @@ router.get('/api/v1/prayer/:id', (req, res) => {
 });
 
 /**
+ * GET: Want to retrieve prayers by page and page offset
+ * PROTECTED: TRUE
+ */
+
+router.get('/api/v1/prayer/page/:page', (req, res) => {
+  let pageOffset = req.params.page;
+  client.query(`
+    /* QUERY GOES HERE */
+   `)
+    .then(data => sendJSON(res, data))
+    .catch(next);
+});
+
+/**
  * GET: Want to retrieve array of prayers ordered by date, then pagination
  * PROTECTED: TRUE
  */
