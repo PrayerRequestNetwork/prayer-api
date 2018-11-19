@@ -1,0 +1,39 @@
+{
+  "name": "prayer-api",
+  "version": "1.0.0",
+  "description": "An API for the Prayer Request Network",
+  "main": "index.js",
+  "scripts": {
+    "createDB": "createdb prayer_request_network",
+    "dumpDB": "psql prayer_request_network < ./prayer_request_network_db ",
+    "initDB": "npm run createDB && npm run dumpDB",
+    "lint": "eslint **/*.js",
+    "start": "node index.js",
+    "test": "jest --coverage --verbose",
+    "test-watch": "jest --watchAll --verbose --coverage",
+    "watch": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PrayerRequestNetwork/prayer-api.git"
+  },
+  "author": "Jake Carroll, Justin Morris",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PrayerRequestNetwork/prayer-api/issues"
+  },
+  "homepage": "https://github.com/PrayerRequestNetwork/prayer-api#readme",
+  "dependencies": {
+    "babel-env": "^2.4.1",
+    "babel-eslint": "^8.2.3",
+    "babel-register": "^6.26.0",
+    "cors": "^2.8.5",
+    "dotenv": "^5.0.1",
+    "eslint": "^4.19.1",
+    "express": "^4.16.3",
+    "jest": "^23.0.1",
+    "morgan": "^1.9.1",
+    "pg": "^7.6.1",
+    "require-dir": "^1.0.0"
+  }
+}
