@@ -18,8 +18,8 @@ client.on('error', err => console.error(err));
 
 router.get('/api/v1/prayer', (req, res) => {
   client.query(`
-    // QUERY GOES HERE
-    // SELECT MOST RECENT 20 than offset
+    /* QUERY GOES HERE */
+    /* SELECT MOST RECENT 20 than offset */
   `)
     .then(data => sendJSON(res, data))
     .catch(next);
@@ -33,10 +33,29 @@ router.get('/api/v1/prayer', (req, res) => {
 router.post('/api/v1/prayer', (req, res) => {
   let {prayer} = req.body;
   client.query(`
-    // QUERY GOES HERE
+    /* QUERY GOES HERE */
   `)
     .then(data => sendJSON(res, data))
     .catch(next);
 });
+
+/**
+ * PUT: Want to update or even moderate the prayer
+ * PROTECTED: TRUE (only edits by moderated or person who posted the prayer)
+ */
+
+router.put('/api/v1/prayer:id', (req, res) => {
+  let {prayer} = req.body;
+  let id = req.params.id;
+  client.query(`
+    /* QUERY GOES HERE */
+  `)
+    .then(data => sendJSON(res, data))
+    .catch(next);
+});
+
+/**
+ * 
+ */
 
 export default router;
