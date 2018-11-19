@@ -8,7 +8,7 @@ require('babel-register');
 
 // Database Connection
 const pg = require('pg');
-const client = new pg.Client('postgresql://localhost:5432/prayer_request_network_db');
+const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
 
