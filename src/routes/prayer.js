@@ -64,7 +64,7 @@ router.delete('/api/v1/prayer:id', (req, res) => {
   client.query(`
     /* QUERY GOES HERE */  
   `)
-    .then(data => sendJSON(data))
+    .then(data => sendJSON(res, data))
     .catch(next);
 });
 
