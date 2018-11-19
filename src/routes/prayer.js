@@ -55,7 +55,17 @@ router.put('/api/v1/prayer:id', (req, res) => {
 });
 
 /**
- * 
+ * DELETE: Want to delete a post 
+ * PROTECTED: TRUE (ADMIN ONLY)
  */
+
+router.delete('/api/v1/prayer:id', (req, res) => {
+  let id = req.params.id;
+  client.query(`
+    /* QUERY GOES HERE */  
+  `)
+    .then(data => sendJSON(data))
+    .catch(next);
+});
 
 export default router;
