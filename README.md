@@ -32,5 +32,7 @@ _Deployment URL: TBD_
     - `PORT`
     - `DATABASE_URL`
 
+    _You can reach out to `justinjodymorris@gmail.com` to obtain a proper `env` file_
+
 5. You can then run `npm start` or `npm run watch`.
 
