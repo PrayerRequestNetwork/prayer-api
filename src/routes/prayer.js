@@ -17,7 +17,18 @@ client.on('error', err => console.error(err));
  */
 
 router.get('/api/v1/prayer', (req, res) => {
-  sendJSON(res, 'Hello', 200);
+  client.query(`
+    // QUERY GOES HERE
+    // SELECT MOST RECENT 20 than offset
+  `)
+    .then(data => {
+      sendJSON(res, data);
+    })
+    .catch(next);
 });
+
+/**
+ * 
+ */
 
 export default router;
