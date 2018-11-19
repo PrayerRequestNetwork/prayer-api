@@ -11,6 +11,19 @@ const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
 
+
+/**
+ * GET: Want to retrieve a prayer by id
+ * PROTECTED: TRUE
+ */
+router.get('/api/v1/prayer/:id', (req, res) => {
+  client.query(`
+  /* QUERY GOES HERE*/
+  `)
+    .then(data => sendJSON(res, data))
+    .catch(next);
+});
+
 /**
  * GET: Want to retrieve array of prayers ordered by date, then pagination
  * PROTECTED: TRUE
@@ -44,7 +57,7 @@ router.post('/api/v1/prayer', (req, res) => {
  * PROTECTED: TRUE (only edits by moderated or person who posted the prayer)
  */
 
-router.put('/api/v1/prayer:id', (req, res) => {
+router.put('/api/v1/prayer/:id', (req, res) => {
   let {prayer} = req.body;
   let id = req.params.id;
   client.query(`
@@ -59,7 +72,7 @@ router.put('/api/v1/prayer:id', (req, res) => {
  * PROTECTED: TRUE (ADMIN ONLY)
  */
 
-router.delete('/api/v1/prayer:id', (req, res) => {
+router.delete('/api/v1/prayer/:id', (req, res) => {
   let id = req.params.id;
   client.query(`
     /* QUERY GOES HERE */  
