@@ -21,14 +21,22 @@ router.get('/api/v1/prayer', (req, res) => {
     // QUERY GOES HERE
     // SELECT MOST RECENT 20 than offset
   `)
-    .then(data => {
-      sendJSON(res, data);
-    })
+    .then(data => sendJSON(res, data))
     .catch(next);
 });
 
 /**
- * 
+ * POST: Want to create an anonymous prayer
+ * PROTECTED: TRUE (only need email)
  */
+
+router.post('/api/v1/prayer', (req, res) => {
+  let {prayer} = req.body;
+  client.query(`
+    // QUERY GOES HERE
+  `)
+    .then(data => sendJSON(res, data))
+    .catch(next);
+});
 
 export default router;
