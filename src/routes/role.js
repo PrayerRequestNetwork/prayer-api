@@ -23,3 +23,17 @@ router.get('/api/v1/role', (req, res) => {
     .then(data => sendJSON(res, data))
     .catch(next);
 });
+
+/**
+ * PUT: Want update a role
+ * PROTECTED: TRUE (Admin access)
+ */
+
+router.put('/api/v1/role', (req, res) => {
+  let {role} = req.body;
+  client.query(`
+    /* QUERY GOES HERE */
+   `)
+    .then(data => sendJSON(res, data))
+    .catch(next);
+});
