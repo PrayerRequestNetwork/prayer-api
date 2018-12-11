@@ -6,6 +6,7 @@ import { sendJSON } from '../lib/sendJSON.js';
 
 const router = express.Router();
 
+console.log('Database',process.env.DATABASE_URL);
 // DATABASE CONNECTION
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
@@ -17,6 +18,7 @@ client.on('error', err => console.error(err));
  * PROTECTED: TRUE
  */
 router.get('/api/v1/prayer/:id', (req, res) => {
+  let prayerid = req.params.id;
   client.query(`
   /* QUERY GOES HERE*/
   `)
@@ -43,12 +45,13 @@ router.get('/api/v1/prayer/page/:page', (req, res) => {
  * PROTECTED: TRUE
  */
 
-router.get('/api/v1/prayer', (req, res) => {
+/* QUERY GOES HERE */
+/* SELECT MOST RECENT 20 than offset */
+router.get('/api/v1/prayer', (req, res, next) => {
   client.query(`
-    /* QUERY GOES HERE */
-    /* SELECT MOST RECENT 20 than offset */
+    select * from geo_tbl
   `)
-    .then(data => sendJSON(res, data))
+    .then(data => sendJSON(res, data.rows))
     .catch(next);
 });
 
