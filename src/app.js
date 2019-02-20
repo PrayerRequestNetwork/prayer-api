@@ -4,6 +4,10 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
+// ROUTES
+import userRoutes from './routes/user.js';
+import prayerRoutes from './routes/prayer.js';
+
 // ERROR MIDDLEWARE
 import errorHandler from './middleware/error.js';
 
@@ -14,6 +18,10 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+
+// APP ROUTES
+app.use(userRoutes);
+app.use(prayerRoutes);
 
 // APP ERROR MIDDLEWARE
 app.use(errorHandler);

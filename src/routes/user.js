@@ -77,3 +77,4 @@ router.delete('/api/v1/user:id', (req, res, next) => {
     .catch(next);
 });
 
+export default router;
