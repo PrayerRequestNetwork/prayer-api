@@ -16,12 +16,10 @@ client.on('error', err => console.error(err));
  * PROTECTED: TRUE (Admin access)
  */
 
-router.get('/api/v1/role/:id', (req, res) => {
+router.get('/api/v1/role/:id', (req, res, next) => {
   let roleID = req.params.id;
   client.query(`
-    /* QUERY GOES HERE*/
-
-    /*Testing Commits*/
+    select * from account_roles
   `)
     .then(data => sendJSON(res, data))
     .catch(next);
@@ -33,7 +31,7 @@ router.get('/api/v1/role/:id', (req, res) => {
  * PROTECTED: TRUE (Admin access)
  */
 
-router.get('/api/v1/role', (req, res) => {
+router.get('/api/v1/role', (req, res, next) => {
   client.query(`
     /* QUERY GOES HERE*/
   `)
@@ -46,7 +44,7 @@ router.get('/api/v1/role', (req, res) => {
  * PROTECTED: TRUE (Admin access)
  */
 
-router.put('/api/v1/role', (req, res) => {
+router.put('/api/v1/role', (req, res, next) => {
   let {role} = req.body;
   client.query(`
     /* QUERY GOES HERE */
@@ -54,3 +52,5 @@ router.put('/api/v1/role', (req, res) => {
     .then(data => sendJSON(res, data))
     .catch(next);
 });
+
+export default router;

@@ -6,7 +6,6 @@ import { sendJSON } from '../lib/sendJSON.js';
 
 const router = express.Router();
 
-console.log('Database',process.env.DATABASE_URL);
 // DATABASE CONNECTION
 const client = new pg.Client(process.env.DATABASE_URL);
 client.connect();
@@ -17,7 +16,7 @@ client.on('error', err => console.error(err));
  * GET: Want to retrieve a prayer by id
  * PROTECTED: TRUE
  */
-router.get('/api/v1/prayer/:id', (req, res) => {
+router.get('/api/v1/prayer/:id', (req, res, next) => {
   let prayerid = req.params.id;
   client.query(`
   /* QUERY GOES HERE*/
@@ -31,7 +30,7 @@ router.get('/api/v1/prayer/:id', (req, res) => {
  * PROTECTED: TRUE
  */
 
-router.get('/api/v1/prayer/page/:page', (req, res) => {
+router.get('/api/v1/prayer/page/:page', (req, res, next) => {
   let pageOffset = req.params.page;
   client.query(`
     /* QUERY GOES HERE */
@@ -49,7 +48,7 @@ router.get('/api/v1/prayer/page/:page', (req, res) => {
 /* SELECT MOST RECENT 20 than offset */
 router.get('/api/v1/prayer', (req, res, next) => {
   client.query(`
-    select * from geo_tbl
+    select * from account_roles
   `)
     .then(data => sendJSON(res, data.rows))
     .catch(next);
@@ -60,7 +59,7 @@ router.get('/api/v1/prayer', (req, res, next) => {
  * PROTECTED: TRUE (only need email)
  */
 
-router.post('/api/v1/prayer', (req, res) => {
+router.post('/api/v1/prayer', (req, res, next) => {
   let {prayer} = req.body;
   client.query(`
     /* QUERY GOES HERE */
@@ -74,7 +73,7 @@ router.post('/api/v1/prayer', (req, res) => {
  * PROTECTED: TRUE (only edits by moderated or person who posted the prayer)
  */
 
-router.put('/api/v1/prayer/:id', (req, res) => {
+router.put('/api/v1/prayer/:id', (req, res, next) => {
   let {prayer} = req.body;
   let id = req.params.id;
   client.query(`
@@ -89,7 +88,7 @@ router.put('/api/v1/prayer/:id', (req, res) => {
  * PROTECTED: TRUE (ADMIN ONLY)
  */
 
-router.delete('/api/v1/prayer/:id', (req, res) => {
+router.delete('/api/v1/prayer/:id', (req, res, next) => {
   let id = req.params.id;
   client.query(`
     /* QUERY GOES HERE */  
