@@ -7,6 +7,7 @@ import morgan from 'morgan';
 // ROUTES
 import userRoutes from './routes/user.js';
 import prayerRoutes from './routes/prayer.js';
+import roleRoutes from './routes/role.js';
 
 // ERROR MIDDLEWARE
 import errorHandler from './middleware/error.js';
@@ -21,6 +22,7 @@ app.use(express.urlencoded({extended: true}));
 
 // APP ROUTES
 app.use(userRoutes);
+app.use(roleRoutes);
 app.use(prayerRoutes);
 
 // APP ERROR MIDDLEWARE

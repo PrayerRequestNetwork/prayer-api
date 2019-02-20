@@ -34,13 +34,12 @@ router.get('/api/v1/user:id', (req, res, next) => {
  */
 
 router.post('/api/v1/user', (req, res, next) => {
-  let {email, password} = req.body;
+  // let {email, password} = req.body;
   client.query(`
-    // QUERY GOES HERE
-    // CREATING A USER WITH JUST AN EMAIL AND PASSWORD
+    select * from account_roles
   `)
     .then(data => {
-      sendJSON(res, data, 201);
+      sendJSON(res, data.rows);
     })
     .catch(next);
 });
@@ -53,10 +52,10 @@ router.post('/api/v1/user', (req, res, next) => {
 router.put('/api/v1/user', (req, res, next) => {
   let {email, password} = req.body;
   client.query(`
-    // QUERY GOES HERE
+    select * from account_roles
   `)
     .then(data => {
-      sendJSON(res, data);
+      sendJSON(res, data.rows);
     })
     .catch(next);
 });
