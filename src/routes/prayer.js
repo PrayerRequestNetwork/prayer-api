@@ -60,10 +60,13 @@ router.get('/api/v1/prayer', (req, res, next) => {
  */
 
 router.post('/api/v1/prayer', (req, res, next) => {
-  let {prayer} = req.body;
+  let {prayerBody} = req.body;
   client.query(`
-    /* QUERY GOES HERE */
-  `)
+    INSERT INTO prayers(body)
+    VALUES ($1)
+  `,
+  [prayerBody]
+  )
     .then(data => sendJSON(res, data))
     .catch(next);
 });
