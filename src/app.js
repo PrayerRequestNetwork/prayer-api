@@ -1,8 +1,7 @@
-'use strict';
-
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
+import requestIp from 'request-ip';
 
 // ROUTES
 import userRoutes from './routes/user.js';
@@ -19,6 +18,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(requestIp.mw({ attributeName: 'userIpAddress' }));
 
 // APP ROUTES
 app.use(userRoutes);
