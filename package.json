@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "createDB": "createdb prayer_request_network",
-    "dumpDB": "psql prayer_request_network < ./prayer_request_network_db ",
+    "dumpDB": "psql prayer_request_network < ./prayer_request_network_db.sql ",
     "initDB": "npm run createDB && npm run dumpDB",
     "lint": "eslint **/*.js",
     "start": "node index.js",
