@@ -48,7 +48,7 @@ router.get('/api/v1/prayer/page/:page', (req, res, next) => {
 /* SELECT MOST RECENT 20 than offset */
 router.get('/api/v1/prayer', (req, res, next) => {
   client.query(`
-    select * from account_roles
+    select * from prayers
   `)
     .then(data => sendJSON(res, data.rows))
     .catch(next);
