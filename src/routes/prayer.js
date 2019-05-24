@@ -62,7 +62,7 @@ router.get('/api/v1/prayer', (req, res, next) => {
 router.post('/api/v1/prayer', (req, res, next) => {
   let {prayerBody} = req.body;
   client.query(`
-    INSERT INTO prayers(body)
+    INSERT INTO prayer_tbl(prayer_x)
     VALUES ($1)
   `,
   [prayerBody]
