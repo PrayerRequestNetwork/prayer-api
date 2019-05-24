@@ -48,7 +48,7 @@ router.get('/api/v1/prayer/page/:page', (req, res, next) => {
 /* SELECT MOST RECENT 20 than offset */
 router.get('/api/v1/prayer', (req, res, next) => {
   client.query(`
-    select * from account_roles
+    select * from prayers
   `)
     .then(data => sendJSON(res, data.rows))
     .catch(next);
@@ -60,10 +60,14 @@ router.get('/api/v1/prayer', (req, res, next) => {
  */
 
 router.post('/api/v1/prayer', (req, res, next) => {
-  let {prayer} = req.body;
+  let {prayerBody} = req.body;
+  console.log('hello');
   client.query(`
-    /* QUERY GOES HERE */
-  `)
+    INSERT INTO prayer_tbl(prayer_x)
+    VALUES ($1)
+  `,
+  [prayerBody]
+  )
     .then(data => sendJSON(res, data))
     .catch(next);
 });

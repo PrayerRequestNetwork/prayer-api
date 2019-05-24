@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "createDB": "createdb prayer_request_network",
-    "dumpDB": "psql prayer_request_network < ./prayer_request_network_db ",
+    "dumpDB": "psql prayer_request_network < ./prayer_request_network_db.sql ",
     "initDB": "npm run createDB && npm run dumpDB",
     "lint": "eslint **/*.js",
     "start": "node index.js",
@@ -34,6 +34,7 @@
     "jest": "^23.0.1",
     "morgan": "^1.9.1",
     "pg": "^7.6.1",
+    "request-ip": "^2.1.3",
     "require-dir": "^1.0.0"
   }
 }
