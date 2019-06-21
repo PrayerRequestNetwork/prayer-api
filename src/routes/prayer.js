@@ -60,12 +60,12 @@ router.get('/api/v1/prayer', (req, res, next) => {
  */
 
 router.post('/api/v1/prayer', (req, res, next) => {
-  let {prayerBody} = req.body;
+  let {prayerBody: prayer_x} = req.body;
   client.query(`
-    INSERT INTO prayer_tbl(body)
+    INSERT INTO prayer_tbl(prayer_x)
     VALUES ($1)
   `,
-  [prayerBody]
+  [prayer_x]
   )
     .then(data => sendJSON(res, data))
     .catch(next);
