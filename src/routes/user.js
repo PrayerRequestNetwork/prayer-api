@@ -16,16 +16,16 @@ client.on('error', err => console.error(err));
  * PROTECTED: TRUE
  */
 
-router.get('/api/v1/user:id', (req, res, next) => {
+router.get('/api/v1/user/:id', (req, res, next) => {
   let _id = req.params.id;
-  client.query(`
-    // QUERY GOES HERE
-    // Get Everything or be selective
-  `)
-    .then(data => {
-      sendJSON(res, data);
-    })
-    .catch(next);
+  // client.query(`
+  //   // QUERY GOES HERE
+  //   // Get Everything or be selective
+  // `)
+  //   .then(data => {
+  sendJSON(res, `HELLO THERE USER ${_id}`);
+  // })
+  // .catch(next);
 });
 
 /**
