@@ -3,6 +3,8 @@ import express from 'express';
 import pg from 'pg';
 
 import { sendJSON } from '../lib/sendJSON.js';
+import SendEmail from '../lib/sendEmail';
+const sendEmail = new SendEmail();
 
 const router = express.Router();
 
@@ -67,7 +69,8 @@ router.post('/api/v1/prayer', (req, res, next) => {
   `,
   [prayer_x]
   )
-    .then(data => sendJSON(res, data))
+    .then(sendJSON(res))
+    .then(sendEmail.toPrayerPartners(prayer_x))
     .catch(next);
 });
 
