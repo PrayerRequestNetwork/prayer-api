@@ -4,7 +4,6 @@ export default (err, req, res, next) => {
   };
   res.statusCode = (typeof err === 'object' && err.status) || 500;
   res.statusMessage = (typeof err === 'object' && err.statusMessage) || 'Server Error';
-  res.setHeader('Content-Type', 'application/json');
-  res.write(JSON.stringify(error));
+  res.send(JSON.stringify(error));
   res.end();
 };
