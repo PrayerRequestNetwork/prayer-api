@@ -1,23 +1,28 @@
 import nodemailer from 'nodemailer';
+import fs from 'fs';
 
 export default class SendEmail {
+
   constructor() {
     this.transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: process.env.EMAIL_SERVICE,
       auth: {
-        user: 'justinjodymorris@gmail.com',
-        pass: 'Abcdefghi5',
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
+    fs.readFile('src/PrayerPartners.txt', 'utf8', (err, data) => {
+      if (err) { throw err; }
+      this.prayerPartners = data;
+    });
   }
+
   toPrayerPartners(prayerRequest) {
     const mailOptions = {
-      from: 'jake@prayerrequestnetwork.com',
-      to: 'justinjodymorris@gmail.com',
+      to: this.prayerPartners,
       subject: 'PRN: You Have a New Prayer Request',
       text: prayerRequest,
     };
-
     this.transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log(error);
