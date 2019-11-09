@@ -11,10 +11,7 @@ export default class SendEmail {
         pass: process.env.EMAIL_PASS,
       },
     });
-    fs.readFile('src/PrayerPartners.txt', 'utf8', (err, data) => {
-      if (err) { throw err; }
-      this.prayerPartners = data;
-    });
+    this.prayerPartners = fs.readFileSync('src/PrayerPartners.txt', {encoding: 'utf8'});
   }
 
   toPrayerPartners(prayerRequest) {
