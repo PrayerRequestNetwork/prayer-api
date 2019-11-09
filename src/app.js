@@ -4,9 +4,7 @@ import morgan from 'morgan';
 import requestIp from 'request-ip';
 
 // ROUTES
-import userRoutes from './routes/user.js';
 import prayerRoutes from './routes/prayer.js';
-import roleRoutes from './routes/role.js';
 
 // ERROR MIDDLEWARE
 import errorHandler from './middleware/error.js';
@@ -21,8 +19,6 @@ app.use(express.urlencoded({extended: true}));
 app.use(requestIp.mw({ attributeName: 'userIpAddress' }));
 
 // APP ROUTES
-app.use(userRoutes);
-app.use(roleRoutes);
 app.use(prayerRoutes);
 
 // APP ERROR MIDDLEWARE
