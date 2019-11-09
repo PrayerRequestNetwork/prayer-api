@@ -9,8 +9,7 @@
     "initDB": "npm run createDB && npm run dumpDB",
     "lint": "eslint **/*.js",
     "start": "nodemon index.js",
-    "test": "jest --coverage --verbose",
-    "test-watch": "jest --watchAll --verbose --coverage",
+    "test": "jest --watchAll --coverage --verbose",
     "watch": "nodemon index.js"
   },
   "repository": {
