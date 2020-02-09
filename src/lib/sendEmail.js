@@ -20,12 +20,14 @@ export default class SendEmail {
       subject: 'PRN: You Have a New Prayer Request',
       text: prayerRequest,
     };
-    this.transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
+    return new Promise((resolve, reject) => {
+      this.transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve('Email sent: ' + info.response);
+        }
+      });
     });
   }
 }
