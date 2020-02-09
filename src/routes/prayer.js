@@ -26,8 +26,8 @@ router.post('/api/v1/prayer', (req, res, next) => {
   `,
   [ prayerBody ]
   )
-    .then(sendJSON(res))
-    .then(sendEmail.toPrayerPartners(prayerBody))
+    .then(() => sendEmail.toPrayerPartners(prayerBody))
+    .then(() => sendJSON(res, 'success'))
     .catch(next);
 });
 
